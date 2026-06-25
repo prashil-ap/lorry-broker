@@ -593,12 +593,12 @@ nav.scrolled{
   position:relative;overflow:hidden;
   background:rgba(255,255,255,.84);
   border:1px solid rgba(15,35,70,.08);
-  border-radius:24px;padding:18px 18px 22px;
+  border-radius:24px;padding:18px 18px 20px;
   box-shadow:0 18px 56px rgba(10,22,40,.06);
   backdrop-filter:blur(14px);
   transition:transform var(--trs),box-shadow var(--trs),border-color var(--trs);
   display:flex;flex-direction:column;
-  min-height:420px;
+  min-height:400px;
 }
 .asset-simple-card::before{
   content:'';position:absolute;top:0;left:0;right:0;height:1px;
@@ -610,7 +610,7 @@ nav.scrolled{
   box-shadow:0 28px 78px rgba(37,99,235,.12);
 }
 .asset-simple-media{
-  position:relative;height:145px;margin:-18px -18px 18px;border-radius:24px 24px 0 0;overflow:hidden;
+  position:relative;height:135px;margin:-18px -18px 16px;border-radius:24px 24px 0 0;overflow:hidden;
   background-size:cover !important;background-position:center center !important;background-repeat:no-repeat !important;
   background-color:#0f172a;
   box-shadow:inset 0 1px 0 rgba(255,255,255,.12);
@@ -659,23 +659,23 @@ nav.scrolled{
   filter:saturate(1.04);
 }
 .asset-simple-title{
-  font-family:'Sora',sans-serif;font-size:1.08rem;font-weight:800;
-  color:var(--text);letter-spacing:-.03em;
+  font-family:'Sora',sans-serif;font-size:1.05rem;font-weight:800;
+  color:var(--text);letter-spacing:-.03em;line-height:1.25;
 }
 .asset-simple-desc{
-  margin-top:10px;font-size:.84rem;line-height:1.68;color:var(--muted);
+  margin-top:8px;font-size:.83rem;line-height:1.58;color:var(--muted);
   flex:1;
 }
 .asset-simple-meta{
-  margin-top:auto;padding-top:16px;
+  margin-top:auto;padding-top:14px;
   border-top:1px solid #e2e8f0;
   display:flex;align-items:center;justify-content:space-between;gap:12px;
 }
 .asset-simple-rate{
-  font-family:'Sora',sans-serif;font-size:1rem;font-weight:800;color:var(--text);
+  font-family:'Sora',sans-serif;font-size:.95rem;font-weight:800;color:var(--text);
 }
 .asset-simple-note{
-  font-size:.72rem;color:var(--muted);
+  font-size:.7rem;color:var(--muted);
 }
 .loads-summary{
   position:relative;z-index:1;
@@ -1072,34 +1072,72 @@ footer{
 }
 @media(max-width:640px){
   .container{padding:0 20px}
-  .hero{min-height:auto}
-  .hero-content{padding:88px 0 72px}
-  .hero-h1{font-size:2rem;text-align:center}
-  .hero-desc{text-align:center}
-  .hero-proof,.hero-ctas,.route-tags{gap:10px;flex-wrap:wrap}
-  .hero-kpis,.panel-grid,.stats-row{grid-template-columns:1fr}
-  .stat-item{border-right:none !important}
-  .stat-item:not(:first-child){border-top:1px solid #e8eef8;padding-top:20px;margin-top:20px}
+  .hero{min-height:auto;padding-bottom:40px}
+  .hero-content{padding:100px 0 40px;gap:32px}
+  .hero-eyebrow{font-size:.65rem;padding:5px 12px}
+  .hero-h1{font-size:1.75rem;text-align:center;line-height:1.15;margin-bottom:14px}
+  .hero-desc{text-align:center;font-size:.92rem;line-height:1.65;margin-bottom:18px}
+  .hero-proof{display:none}
+  .hero-ctas{gap:10px;margin-bottom:20px}
+  .btn-primary,.btn-ghost{font-size:.85rem;padding:13px 24px}
+  .hero-kpis{grid-template-columns:repeat(2,1fr);gap:12px}
+  .kpi{padding:14px 12px}
+  .kpi-num{font-size:1.25rem}
+  .kpi-label{font-size:.68rem}
+  .hero-note{font-size:.74rem;margin-top:12px}
+  .dashboard-card{padding:16px;transform:none !important}
+  .dc-title{font-size:.95rem}
+  .dc-sub{font-size:.74rem;margin-top:5px}
+  .route-focus{padding:14px;margin-bottom:14px}
+  .rf-title{font-size:1.1rem}
+  .rf-price{font-size:1.3rem}
+  .panel-grid,.stats-row{grid-template-columns:1fr}
+  .stat-item{border-right:none !important;padding:16px 20px !important}
+  .stat-item:not(:first-child){border-top:1px solid #e8eef8;padding-top:16px !important;margin-top:0}
+  .si-num{font-size:1.35rem}
+  .si-label{font-size:.72rem}
   .rf-top,.route-flow,.panel-row{grid-template-columns:1fr;display:grid}
   .rf-price{text-align:left}
   .route-node{min-width:0}
-  .dashboard-card{padding:20px;transform:none !important}
-  .loads-grid{grid-template-columns:1fr}
-  .loads-summary{padding:20px}
-  .loads-summary-tags{flex-direction:column;width:100%}
-  .loads-summary-tags span{width:100%;text-align:center}
+  .asset-simple-card{min-height:340px;padding:14px 14px 16px}
+  .asset-simple-media{height:120px;margin:-14px -14px 12px}
+  .asset-simple-title{font-size:.98rem}
+  .asset-simple-desc{font-size:.8rem;line-height:1.52;margin-top:7px}
+  .asset-simple-meta{padding-top:12px}
+  .asset-simple-rate{font-size:.88rem}
+  .asset-simple-note{font-size:.68rem}
+  .loads-grid{grid-template-columns:1fr;gap:16px}
+  .loads-summary{padding:18px;gap:14px}
+  .loads-summary-copy strong{font-size:1rem}
+  .loads-summary-copy span{font-size:.81rem;margin-top:6px}
+  .loads-summary-tags{flex-direction:column;width:100%;gap:8px}
+  .loads-summary-tags span{width:100%;text-align:center;padding:8px 10px;font-size:.68rem}
   .float-card{display:none}
-  .phone-showcase{width:200px;height:400px}
+  .phone-showcase{width:180px;height:360px}
   .pocket-content,.app-text{text-align:center}
   .feature-list{max-width:400px;margin:0 auto}
-  .sec-title{font-size:1.8rem}
-  .page-header{padding:110px 0 60px}
-  .page-header h1{font-size:1.8rem}
-  .contact-form{padding:28px 20px}
-  .cta-title{font-size:1.9rem}
-  .footer-top{grid-template-columns:1fr;text-align:center}
+  .sec-title{font-size:1.65rem;line-height:1.25}
+  .sec-desc{font-size:.88rem}
+  .ben-card{padding:14px 14px 20px}
+  .ben-media{height:140px;margin:-14px -14px 16px}
+  .ben-title{font-size:1rem;margin-bottom:8px}
+  .ben-desc{font-size:.82rem;line-height:1.6}
+  .page-header{padding:110px 0 50px}
+  .page-header h1{font-size:1.75rem;line-height:1.2}
+  .page-header p{font-size:.95rem}
+  .contact-form{padding:24px 18px}
+  .cta-section{padding:60px 0}
+  .cta-title{font-size:1.7rem;line-height:1.2;margin-bottom:14px}
+  .cta-desc{font-size:.88rem;margin-bottom:32px}
+  .footer-top{grid-template-columns:1fr;text-align:center;gap:28px}
+  .foot-brand{text-align:center}
+  .foot-brand .fl{justify-content:center;display:flex}
+  .foot-brand p{margin:0 auto;max-width:100%}
+  .foot-col{text-align:center}
+  .foot-col h5{text-align:center}
   .foot-col ul{align-items:center}
-  .footer-bottom{flex-direction:column;text-align:center}
+  .footer-bottom{flex-direction:column;text-align:center;gap:12px}
+  .foot-legal{justify-content:center;flex-wrap:wrap}
 }
 </style>
 </head>
@@ -1363,41 +1401,41 @@ footer{
       <div class="loads-grid">
         <article class="asset-simple-card reveal" data-parallax-speed="0.07">
           <div class="asset-simple-media ftl"></div>
-          <div class="asset-simple-title">Full Truckload</div>
-          <p class="asset-simple-desc">Consistent volume lanes for carriers focused on stronger utilization and dependable freight flow.</p>
+          <div class="asset-simple-title">Full Truckload (FTL)</div>
+          <p class="asset-simple-desc">High-volume dedicated lanes with consistent freight flow. Perfect for carriers seeking reliable long-haul opportunities with strong utilization rates and predictable revenue streams across major corridors.</p>
           <div class="asset-simple-meta">
             <span class="asset-simple-rate">$4.85/mi</span>
-            <span class="asset-simple-note">Best for steady long-haul moves</span>
+            <span class="asset-simple-note">Steady long-haul routes</span>
           </div>
         </article>
 
         <article class="asset-simple-card reveal d1" data-parallax-speed="-0.06">
           <div class="asset-simple-media ltl"></div>
-          <div class="asset-simple-title">LTL</div>
-          <p class="asset-simple-desc">Flexible partial freight for regional fleets that need tighter turns and more frequent opportunities.</p>
+          <div class="asset-simple-title">Less-Than-Truckload (LTL)</div>
+          <p class="asset-simple-desc">Flexible partial freight ideal for regional operations. Multiple pickup and delivery points allow for tighter turns, frequent loads, and optimized routes within your preferred service areas.</p>
           <div class="asset-simple-meta">
             <span class="asset-simple-rate">$3.90/mi</span>
-            <span class="asset-simple-note">Best for dense regional coverage</span>
+            <span class="asset-simple-note">Regional multi-stop routes</span>
           </div>
         </article>
 
         <article class="asset-simple-card reveal d2" data-parallax-speed="0.09">
           <div class="asset-simple-media hotshot"></div>
           <div class="asset-simple-title">Expedited &amp; Hotshot</div>
-          <p class="asset-simple-desc">Fast-response freight with premium pricing for teams that move quickly and handle tighter windows.</p>
+          <p class="asset-simple-desc">Premium time-critical freight for fast-response teams. Higher rates compensate for urgent delivery windows, specialized handling requirements, and quick turnaround expectations.</p>
           <div class="asset-simple-meta">
             <span class="asset-simple-rate">$6.20/mi</span>
-            <span class="asset-simple-note">Best for time-sensitive shipments</span>
+            <span class="asset-simple-note">Premium urgent deliveries</span>
           </div>
         </article>
 
         <article class="asset-simple-card reveal d3" data-parallax-speed="-0.04">
           <div class="asset-simple-media flatbed"></div>
           <div class="asset-simple-title">Flatbed &amp; Step Deck</div>
-          <p class="asset-simple-desc">Specialized freight for open-deck equipment, oversized loads, and more controlled route planning.</p>
+          <p class="asset-simple-desc">Specialized open-deck hauling for oversized cargo, construction materials, and industrial equipment. Requires specific equipment and expertise with controlled route planning and loading procedures.</p>
           <div class="asset-simple-meta">
-            <span class="asset-simple-rate">High control</span>
-            <span class="asset-simple-note">Best for project and industrial freight</span>
+            <span class="asset-simple-rate">$5.40/mi</span>
+            <span class="asset-simple-note">Specialized equipment loads</span>
           </div>
         </article>
       </div>
