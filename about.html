@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>About Us – Lorry Broker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet"/>
+<style>
+/* ════════════════════════════════════════════════
+   RESET & TOKENS
+════════════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0a1628; --navy2:#0d1f3c; --navy3:#0f2346;
+  --blue:#1a4fce; --blue2:#2563eb; --blue3:#1d4ed8;
+  --sky:#38bdf8; --sky2:#7dd3fc;
+  --accent:#f59e0b; --accent2:#fbbf24;
+  --emerald:#10b981; --purple:#7c3aed;
+  --white:#ffffff; --off:#f0f4fb; --off2:#e8eef8;
+  --muted:#64748b; --muted2:#94a3b8; --text:#1e293b;
+  --r:14px; --r2:20px; --r3:28px;
+  --shadow:0 4px 32px rgba(10,22,40,.12);
+  --shadow2:0 16px 60px rgba(10,22,40,.18);
+  --trs:.35s cubic-bezier(.4,0,.2,1);
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--white);overflow-x:hidden}
+h1,h2,h3,h4,h5,h6{font-family:'Sora',sans-serif}
+a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+
+/* ════════ SCROLLBAR ════════ */
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--blue2);border-radius:3px}
+
+/* ════════ SCROLL PROGRESS ════════ */
+#scroll-progress{
+  position:fixed;top:0;left:0;height:3px;width:0%;z-index:9999;
+  background:linear-gradient(90deg,var(--blue2),var(--sky));
+  transition:width .1s linear;
+  box-shadow:0 0 8px rgba(56,189,248,.6);
+}
+
+/* ════════ UTILITY ════════ */
+.container{max-width:1160px;margin:0 auto;padding:0 28px}
+.hl{color:var(--blue2)}
+
+.badge{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:.68rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+  padding:5px 13px;border-radius:99px;
+}
+.badge-blue{background:#dbeafe;color:var(--blue2)}
+
+/* ════════ REVEAL ANIMATIONS ════════ */
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .75s cubic-bezier(.4,0,.2,1),transform .75s cubic-bezier(.4,0,.2,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}
+
+/* ════════════════════════════════════════════════
+   NAVIGATION
+════════════════════════════════════════════════ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(10,22,40,.95);
+  backdrop-filter:blur(20px);
+  box-shadow:0 1px 0 rgba(255,255,255,.06);
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:70px}
+.nav-logo{
+  font-family:'Sora',sans-serif;font-weight:900;font-size:1.3rem;
+  color:var(--white);letter-spacing:-.03em;display:flex;align-items:center;gap:2px;
+}
+.nav-logo-dot{
+  width:8px;height:8px;border-radius:50%;background:var(--sky);
+  margin-left:2px;animation:navDotPulse 2.5s ease-in-out infinite;
+}
+@keyframes navDotPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.5);opacity:.7}}
+.nav-links{display:flex;gap:34px;list-style:none}
+.nav-links a{
+  color:rgba(255,255,255,.65);font-size:.87rem;font-weight:500;
+  transition:color var(--trs);position:relative;padding-bottom:2px;
+}
+.nav-links a::after{
+  content:'';position:absolute;left:0;bottom:0;width:0;height:1.5px;
+  background:linear-gradient(90deg,var(--blue2),var(--sky));
+  border-radius:1px;transition:width var(--trs);
+}
+.nav-links a:hover{color:var(--white)}
+.nav-links a:hover::after{width:100%}
+.nav-links a.active{color:var(--white)}
+.nav-links a.active::after{width:100%}
+
+/* Mobile Menu Button */
+.mobile-menu-btn{
+  display:none;width:32px;height:32px;
+  flex-direction:column;gap:6px;justify-content:center;align-items:center;
+  cursor:pointer;background:none;border:none;padding:0;
+}
+.mobile-menu-btn span{
+  display:block;width:22px;height:2px;background:var(--white);
+  border-radius:2px;transition:var(--trs);
+}
+.mobile-menu-btn.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.mobile-menu-btn.active span:nth-child(2){opacity:0}
+.mobile-menu-btn.active span:nth-child(3){transform:rotate(-45deg) translate(7px,-6px)}
+
+/* Mobile Menu */
+.mobile-menu{
+  position:fixed;top:70px;left:0;right:0;bottom:0;
+  background:rgba(10,22,40,.98);backdrop-filter:blur(20px);
+  z-index:99;padding:40px 28px;
+  transform:translateX(-100%);opacity:0;
+  transition:transform .4s cubic-bezier(.4,0,.2,1),opacity .4s cubic-bezier(.4,0,.2,1);
+}
+.mobile-menu.active{
+  transform:translateX(0);opacity:1;
+}
+.mobile-menu-links{
+  list-style:none;display:flex;flex-direction:column;gap:8px;
+}
+.mobile-menu-links a{
+  display:block;padding:16px 20px;border-radius:12px;
+  color:rgba(255,255,255,.7);font-size:1.05rem;font-weight:600;
+  transition:var(--trs);border:1px solid transparent;
+}
+.mobile-menu-links a:hover,
+.mobile-menu-links a.active{
+  background:rgba(56,189,248,.1);color:var(--white);
+  border-color:rgba(56,189,248,.2);
+}
+.mobile-menu-cta{
+  margin-top:32px;
+}
+.mobile-menu-cta a{
+  display:block;text-align:center;
+  background:linear-gradient(135deg,var(--blue2),var(--blue));
+  color:var(--white);font-family:'Sora',sans-serif;font-weight:700;
+  padding:16px;border-radius:12px;
+  box-shadow:0 6px 24px rgba(37,99,235,.42);
+}
+
+/* ════════════════════════════════════════════════
+   PAGE HEADER
+════════════════════════════════════════════════ */
+.page-header{
+  padding:140px 0 80px;background:var(--navy);
+  position:relative;overflow:hidden;
+}
+.page-header::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 40%,rgba(37,99,235,.18) 0%,transparent 70%),
+    radial-gradient(ellipse 50% 40% at 80% 60%,rgba(56,189,248,.12) 0%,transparent 65%);
+}
+.page-header-content{position:relative;z-index:1;text-align:center;max-width:720px;margin:0 auto}
+.page-header-badge{margin-bottom:20px}
+.page-header h1{
+  font-size:clamp(2.2rem,4.5vw,3.2rem);font-weight:900;
+  letter-spacing:-.04em;color:var(--white);margin-bottom:18px;line-height:1.12;
+}
+.page-header p{
+  color:rgba(255,255,255,.65);font-size:1.05rem;line-height:1.68;
+}
+
+/* ════════════════════════════════════════════════
+   CONTENT SECTIONS
+════════════════════════════════════════════════ */
+.content-section{padding:80px 0}
+.content-section.alt{background:var(--off)}
+.section-inner{max-width:860px;margin:0 auto}
+
+.sec-title{
+  font-size:clamp(1.7rem,3.2vw,2.4rem);font-weight:800;
+  letter-spacing:-.03em;line-height:1.2;margin-bottom:18px;
+}
+.content-section p{
+  font-size:1rem;line-height:1.82;color:var(--text);margin-bottom:18px;
+}
+.content-section h3{
+  font-size:1.35rem;font-weight:700;margin-top:42px;margin-bottom:14px;
+}
+
+/* Stats Grid */
+.stats-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin:48px 0;
+}
+.stat-box{
+  background:var(--white);border:1px solid rgba(0,0,0,.06);
+  border-radius:20px;padding:32px 24px;text-align:center;
+  transition:var(--trs);box-shadow:0 12px 42px rgba(10,22,40,.06);
+}
+.stat-box:hover{
+  transform:translateY(-6px);
+  box-shadow:0 20px 60px rgba(37,99,235,.12);
+  border-color:rgba(37,99,235,.12);
+}
+.stat-box .num{
+  font-family:'Sora',sans-serif;font-size:2.8rem;font-weight:900;
+  color:var(--blue2);line-height:1;margin-bottom:10px;
+}
+.stat-box .label{
+  font-size:.9rem;color:var(--muted);line-height:1.5;
+}
+
+/* Team Grid */
+.team-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin:48px 0;
+}
+.team-card{
+  background:var(--white);border:1px solid rgba(0,0,0,.06);
+  border-radius:20px;padding:28px;text-align:center;
+  transition:var(--trs);box-shadow:0 12px 42px rgba(10,22,40,.06);
+}
+.team-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 20px 60px rgba(37,99,235,.12);
+}
+.team-avatar{
+  width:100px;height:100px;border-radius:50%;
+  margin:0 auto 18px;
+  background:linear-gradient(135deg,var(--blue2),var(--sky));
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Sora',sans-serif;font-size:2rem;font-weight:800;color:var(--white);
+}
+.team-name{
+  font-family:'Sora',sans-serif;font-size:1.15rem;font-weight:700;
+  margin-bottom:6px;
+}
+.team-role{
+  font-size:.88rem;color:var(--blue2);font-weight:600;margin-bottom:12px;
+}
+.team-bio{
+  font-size:.85rem;color:var(--muted);line-height:1.68;
+}
+
+/* Values List */
+.values-list{
+  display:grid;gap:24px;margin:48px 0;
+}
+.value-item{
+  background:var(--white);border:1px solid rgba(0,0,0,.06);
+  border-radius:20px;padding:28px 32px;
+  display:flex;gap:24px;align-items:flex-start;
+  transition:var(--trs);box-shadow:0 12px 42px rgba(10,22,40,.06);
+}
+.value-item:hover{
+  transform:translateX(8px);
+  box-shadow:0 20px 60px rgba(37,99,235,.12);
+  border-color:rgba(37,99,235,.12);
+}
+.value-icon{
+  width:56px;height:56px;border-radius:14px;flex-shrink:0;
+  background:linear-gradient(135deg,rgba(37,99,235,.1),rgba(56,189,248,.05));
+  border:1px solid rgba(37,99,235,.12);
+  display:flex;align-items:center;justify-content:center;
+}
+.value-content h4{
+  font-family:'Sora',sans-serif;font-size:1.12rem;font-weight:700;
+  margin-bottom:8px;
+}
+.value-content p{
+  font-size:.92rem;color:var(--muted);line-height:1.68;margin:0;
+}
+
+/* ════════════════════════════════════════════════
+   FOOTER
+════════════════════════════════════════════════ */
+footer{
+  background:var(--navy);
+  border-top:1px solid rgba(255,255,255,.06);
+  padding:48px 0 32px;
+}
+.footer-top{
+  display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;
+  gap:48px;margin-bottom:48px;
+}
+.foot-brand .fl{
+  font-family:'Sora',sans-serif;font-weight:900;font-size:1.25rem;color:var(--white);
+  letter-spacing:-.03em;margin-bottom:12px;
+}
+.foot-brand .fl span{color:var(--sky)}
+.foot-brand p{font-size:.83rem;color:rgba(255,255,255,.38);line-height:1.65;max-width:200px}
+.foot-col h5{
+  font-family:'Sora',sans-serif;font-size:.78rem;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.35);
+  margin-bottom:16px;
+}
+.foot-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.foot-col a{font-size:.82rem;color:rgba(255,255,255,.4);transition:color var(--trs)}
+.foot-col a:hover{color:var(--sky)}
+.footer-bottom{
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;
+  border-top:1px solid rgba(255,255,255,.05);padding-top:24px;
+}
+.copy{font-size:.76rem;color:rgba(255,255,255,.25)}
+.foot-legal{display:flex;gap:20px}
+.foot-legal a{font-size:.76rem;color:rgba(255,255,255,.25);transition:color var(--trs)}
+.foot-legal a:hover{color:rgba(255,255,255,.5)}
+
+/* ════════════════════════════════════════════════
+   RESPONSIVE
+════════════════════════════════════════════════ */
+@media(max-width:960px){
+  .stats-grid,.team-grid{grid-template-columns:1fr;max-width:500px;margin:0 auto}
+  .footer-top{grid-template-columns:1fr 1fr;gap:32px}
+  .nav-links{display:none}
+  .mobile-menu-btn{display:flex}
+}
+@media(max-width:640px){
+  .container{padding:0 20px}
+  .page-header{padding:120px 0 60px}
+  .page-header h1{font-size:1.8rem}
+  .stats-grid,.team-grid{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr;text-align:center}
+  .foot-col ul{align-items:center}
+  .footer-bottom{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- Scroll progress -->
+<div id="scroll-progress"></div>
+
+<!-- ══════════════ NAV ══════════════ -->
+<nav>
+  <div class="container">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">LorryBroker<span class="nav-logo-dot"></span></a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html" class="active">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="terms.html">Terms</a></li>
+        <li><a href="privacy.html">Privacy</a></li>
+      </ul>
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <ul class="mobile-menu-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html" class="active">About Us</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="terms.html">Terms</a></li>
+    <li><a href="privacy.html">Privacy</a></li>
+  </ul>
+  <div class="mobile-menu-cta">
+    <a href="contact.html">Get Started</a>
+  </div>
+</div>
+
+<!-- ══════════════ PAGE HEADER ══════════════ -->
+<section class="page-header">
+  <div class="container">
+    <div class="page-header-content reveal">
+      <span class="badge badge-blue page-header-badge">About LorryBroker</span>
+      <h1>Building the Future of <span class="hl" style="color:var(--sky)">Logistics Technology</span></h1>
+      <p>We're on a mission to empower carriers with smarter tools, stronger lanes, and the technology they need to scale their businesses profitably.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ STORY SECTION ══════════════ -->
+<section class="content-section">
+  <div class="container">
+    <div class="section-inner reveal d1">
+      <h2 class="sec-title">Our <span class="hl">Story</span></h2>
+      <p>LorryBroker was founded in 2020 by a team of logistics veterans and technology innovators who saw a broken system. Owner-operators and small carriers were struggling with outdated load boards, inconsistent freight quality, and cash flow problems that threatened their businesses every single day.</p>
+      <p>We knew there had to be a better way. So we built it.</p>
+      <p>Today, LorryBroker serves thousands of carriers across 28 states, matching them with high-quality freight, reducing empty miles, and delivering the financial flexibility they need to grow. Our platform combines cutting-edge AI, real-time data, and human expertise to create a load-matching experience that actually works for professional carriers.</p>
+      
+      <div class="stats-grid">
+        <div class="stat-box reveal">
+          <div class="num">12,482</div>
+          <div class="label">Active Loads Daily</div>
+        </div>
+        <div class="stat-box reveal d1">
+          <div class="num">28</div>
+          <div class="label">States Covered</div>
+        </div>
+        <div class="stat-box reveal d2">
+          <div class="num">98.9%</div>
+          <div class="label">Success Rate</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ MISSION SECTION ══════════════ -->
+<section class="content-section alt">
+  <div class="container">
+    <div class="section-inner reveal">
+      <h2 class="sec-title">Our <span class="hl">Mission</span></h2>
+      <p>We exist to solve the biggest challenges facing modern carriers: inconsistent freight access, poor cash flow, and operational complexity that slows growth.</p>
+      <p>Our mission is simple: <strong>Keep trucks full. Keep revenue moving. Keep carriers in control.</strong></p>
+      <p>Every feature we build, every partnership we forge, and every decision we make is guided by one principle: empowering carriers to build sustainable, profitable businesses on their own terms.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ VALUES SECTION ══════════════ -->
+<section class="content-section">
+  <div class="container">
+    <div class="section-inner">
+      <h2 class="sec-title reveal">Our <span class="hl">Core Values</span></h2>
+      <p class="reveal d1">These principles guide everything we do at LorryBroker:</p>
+      
+      <div class="values-list">
+        <div class="value-item reveal">
+          <div class="value-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <div class="value-content">
+            <h4>Carrier-First</h4>
+            <p>We build for carriers, not shippers. Every product decision starts with the question: "How does this help our carriers succeed?"</p>
+          </div>
+        </div>
+        
+        <div class="value-item reveal d1">
+          <div class="value-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="value-content">
+            <h4>Transparency</h4>
+            <p>No hidden fees. No surprise terms. No games. We believe trust is earned through radical honesty in every interaction.</p>
+          </div>
+        </div>
+        
+        <div class="value-item reveal d2">
+          <div class="value-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="value-content">
+            <h4>Speed & Reliability</h4>
+            <p>In logistics, every minute matters. We obsess over performance, uptime, and response times so carriers can move faster.</p>
+          </div>
+        </div>
+        
+        <div class="value-item reveal d3">
+          <div class="value-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <div class="value-content">
+            <h4>Innovation</h4>
+            <p>The old way of doing things doesn't work anymore. We leverage technology to create solutions the industry has never seen.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ TEAM SECTION ══════════════ -->
+<section class="content-section alt">
+  <div class="container">
+    <div class="section-inner">
+      <h2 class="sec-title reveal">Meet the <span class="hl">Team</span></h2>
+      <p class="reveal d1">We're a diverse team of logistics experts, software engineers, and customer success professionals united by one goal: helping carriers thrive.</p>
+      
+      <div class="team-grid">
+        <div class="team-card reveal">
+          <div class="team-avatar">RS</div>
+          <div class="team-name">Rajesh Sharma</div>
+          <div class="team-role">Founder & CEO</div>
+          <p class="team-bio">20+ years in logistics operations. Built LorryBroker to solve the problems he faced as a fleet owner.</p>
+        </div>
+        
+        <div class="team-card reveal d1">
+          <div class="team-avatar" style="background:linear-gradient(135deg,#7c3aed,#38bdf8)">PK</div>
+          <div class="team-name">Priya Kapoor</div>
+          <div class="team-role">Chief Technology Officer</div>
+          <p class="team-bio">Former engineer at Google. Passionate about using AI to transform logistics workflows.</p>
+        </div>
+        
+        <div class="team-card reveal d2">
+          <div class="team-avatar" style="background:linear-gradient(135deg,#10b981,#2563eb)">AM</div>
+          <div class="team-name">Amit Mehta</div>
+          <div class="team-role">VP of Carrier Relations</div>
+          <p class="team-bio">15 years building carrier networks. Your success is his success.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="foot-brand">
+        <div class="fl">LorryBroker<span>.</span></div>
+        <p>The industry's most powerful load-matching engine for professional carriers.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Network</h5>
+        <ul>
+          <li><a href="index.html">Load Board</a></li>
+          <li><a href="index.html#loads">Services</a></li>
+          <li><a href="index.html#pocket">Mobile App</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="terms.html">Terms of Service</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="copy">© 2026 Lorry Broker Inc. All rights reserved.</p>
+      <div class="foot-legal">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ─── Mobile Menu Toggle ─── */
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+if(mobileMenuBtn && mobileMenu){
+  mobileMenuBtn.addEventListener('click', () => {
+    mobileMenuBtn.classList.toggle('active');
+    mobileMenu.classList.toggle('active');
+    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+  });
+  mobileMenu.addEventListener('click', (e) => {
+    if(e.target === mobileMenu){
+      mobileMenuBtn.classList.remove('active');
+      mobileMenu.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  });
+}
+
+/* ─── Scroll progress ─── */
+const prog = document.getElementById('scroll-progress');
+window.addEventListener('scroll', () => {
+  const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+  prog.style.width = pct + '%';
+}, {passive:true});
+
+/* ─── Reveal on scroll ─── */
+const allReveals = document.querySelectorAll('.reveal');
+const ro = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){ e.target.classList.add('visible'); ro.unobserve(e.target); }
+  });
+}, {threshold:0.1});
+allReveals.forEach(el => ro.observe(el));
+</script>
+</body>
+</html>

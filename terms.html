@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Terms and Conditions – Lorry Broker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet"/>
+<style>
+/* ════════════════════════════════════════════════
+   RESET & TOKENS
+════════════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0a1628; --navy2:#0d1f3c; --navy3:#0f2346;
+  --blue:#1a4fce; --blue2:#2563eb; --blue3:#1d4ed8;
+  --sky:#38bdf8; --sky2:#7dd3fc;
+  --accent:#f59e0b; --accent2:#fbbf24;
+  --emerald:#10b981; --purple:#7c3aed;
+  --white:#ffffff; --off:#f0f4fb; --off2:#e8eef8;
+  --muted:#64748b; --muted2:#94a3b8; --text:#1e293b;
+  --r:14px; --r2:20px; --r3:28px;
+  --shadow:0 4px 32px rgba(10,22,40,.12);
+  --shadow2:0 16px 60px rgba(10,22,40,.18);
+  --trs:.35s cubic-bezier(.4,0,.2,1);
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--white);overflow-x:hidden}
+h1,h2,h3,h4,h5,h6{font-family:'Sora',sans-serif}
+a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+
+/* ════════ SCROLLBAR ════════ */
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--blue2);border-radius:3px}
+
+/* ════════ SCROLL PROGRESS ════════ */
+#scroll-progress{
+  position:fixed;top:0;left:0;height:3px;width:0%;z-index:9999;
+  background:linear-gradient(90deg,var(--blue2),var(--sky));
+  transition:width .1s linear;
+  box-shadow:0 0 8px rgba(56,189,248,.6);
+}
+
+/* ════════ UTILITY ════════ */
+.container{max-width:1160px;margin:0 auto;padding:0 28px}
+.hl{color:var(--blue2)}
+
+.badge{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:.68rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+  padding:5px 13px;border-radius:99px;
+}
+.badge-blue{background:#dbeafe;color:var(--blue2)}
+
+/* ════════ REVEAL ANIMATIONS ════════ */
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .75s cubic-bezier(.4,0,.2,1),transform .75s cubic-bezier(.4,0,.2,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}
+
+/* ════════════════════════════════════════════════
+   NAVIGATION
+════════════════════════════════════════════════ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(10,22,40,.95);
+  backdrop-filter:blur(20px);
+  box-shadow:0 1px 0 rgba(255,255,255,.06);
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:70px}
+.nav-logo{
+  font-family:'Sora',sans-serif;font-weight:900;font-size:1.3rem;
+  color:var(--white);letter-spacing:-.03em;display:flex;align-items:center;gap:2px;
+}
+.nav-logo-dot{
+  width:8px;height:8px;border-radius:50%;background:var(--sky);
+  margin-left:2px;animation:navDotPulse 2.5s ease-in-out infinite;
+}
+@keyframes navDotPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.5);opacity:.7}}
+.nav-links{display:flex;gap:34px;list-style:none}
+.nav-links a{
+  color:rgba(255,255,255,.65);font-size:.87rem;font-weight:500;
+  transition:color var(--trs);position:relative;padding-bottom:2px;
+}
+.nav-links a::after{
+  content:'';position:absolute;left:0;bottom:0;width:0;height:1.5px;
+  background:linear-gradient(90deg,var(--blue2),var(--sky));
+  border-radius:1px;transition:width var(--trs);
+}
+.nav-links a:hover{color:var(--white)}
+.nav-links a:hover::after{width:100%}
+.nav-links a.active{color:var(--white)}
+.nav-links a.active::after{width:100%}
+
+/* Mobile Menu Button */
+.mobile-menu-btn{
+  display:none;width:32px;height:32px;
+  flex-direction:column;gap:6px;justify-content:center;align-items:center;
+  cursor:pointer;background:none;border:none;padding:0;
+}
+.mobile-menu-btn span{
+  display:block;width:22px;height:2px;background:var(--white);
+  border-radius:2px;transition:var(--trs);
+}
+.mobile-menu-btn.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.mobile-menu-btn.active span:nth-child(2){opacity:0}
+.mobile-menu-btn.active span:nth-child(3){transform:rotate(-45deg) translate(7px,-6px)}
+
+/* Mobile Menu */
+.mobile-menu{
+  position:fixed;top:70px;left:0;right:0;bottom:0;
+  background:rgba(10,22,40,.98);backdrop-filter:blur(20px);
+  z-index:99;padding:40px 28px;
+  transform:translateX(-100%);opacity:0;
+  transition:transform .4s cubic-bezier(.4,0,.2,1),opacity .4s cubic-bezier(.4,0,.2,1);
+}
+.mobile-menu.active{
+  transform:translateX(0);opacity:1;
+}
+.mobile-menu-links{
+  list-style:none;display:flex;flex-direction:column;gap:8px;
+}
+.mobile-menu-links a{
+  display:block;padding:16px 20px;border-radius:12px;
+  color:rgba(255,255,255,.7);font-size:1.05rem;font-weight:600;
+  transition:var(--trs);border:1px solid transparent;
+}
+.mobile-menu-links a:hover,
+.mobile-menu-links a.active{
+  background:rgba(56,189,248,.1);color:var(--white);
+  border-color:rgba(56,189,248,.2);
+}
+.mobile-menu-cta{
+  margin-top:32px;
+}
+.mobile-menu-cta a{
+  display:block;text-align:center;
+  background:linear-gradient(135deg,var(--blue2),var(--blue));
+  color:var(--white);font-family:'Sora',sans-serif;font-weight:700;
+  padding:16px;border-radius:12px;
+  box-shadow:0 6px 24px rgba(37,99,235,.42);
+}
+
+/* ════════════════════════════════════════════════
+   PAGE HEADER
+════════════════════════════════════════════════ */
+.page-header{
+  padding:140px 0 80px;background:var(--navy);
+  position:relative;overflow:hidden;
+}
+.page-header::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 40%,rgba(37,99,235,.18) 0%,transparent 70%),
+    radial-gradient(ellipse 50% 40% at 80% 60%,rgba(56,189,248,.12) 0%,transparent 65%);
+}
+.page-header-content{position:relative;z-index:1;text-align:center;max-width:720px;margin:0 auto}
+.page-header-badge{margin-bottom:20px}
+.page-header h1{
+  font-size:clamp(2.2rem,4.5vw,3.2rem);font-weight:900;
+  letter-spacing:-.04em;color:var(--white);margin-bottom:18px;line-height:1.12;
+}
+.page-header p{
+  color:rgba(255,255,255,.65);font-size:1.05rem;line-height:1.68;
+}
+
+/* ════════════════════════════════════════════════
+   CONTENT SECTIONS
+════════════════════════════════════════════════ */
+.content-section{padding:80px 0}
+.section-inner{max-width:860px;margin:0 auto}
+
+.last-updated{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:10px 16px;border-radius:99px;
+  background:var(--off);border:1px solid rgba(0,0,0,.06);
+  font-size:.82rem;color:var(--muted);margin-bottom:32px;
+}
+.last-updated svg{flex-shrink:0}
+
+.content-section h2{
+  font-size:1.8rem;font-weight:800;
+  letter-spacing:-.03em;line-height:1.25;
+  margin:48px 0 16px;
+}
+.content-section h2:first-of-type{margin-top:0}
+.content-section h3{
+  font-size:1.35rem;font-weight:700;
+  margin:32px 0 12px;
+}
+.content-section p{
+  font-size:1rem;line-height:1.82;color:var(--text);margin-bottom:18px;
+}
+.content-section ul,
+.content-section ol{
+  margin:18px 0;padding-left:28px;
+}
+.content-section li{
+  font-size:1rem;line-height:1.82;color:var(--text);margin-bottom:12px;
+}
+.content-section strong{font-weight:600;color:var(--blue2)}
+
+/* Info Box */
+.info-box{
+  background:rgba(37,99,235,.06);
+  border-left:4px solid var(--blue2);
+  padding:20px 24px;border-radius:12px;
+  margin:32px 0;
+}
+.info-box p{margin:0;font-size:.95rem;line-height:1.72}
+
+/* ════════════════════════════════════════════════
+   FOOTER
+════════════════════════════════════════════════ */
+footer{
+  background:var(--navy);
+  border-top:1px solid rgba(255,255,255,.06);
+  padding:48px 0 32px;
+}
+.footer-top{
+  display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;
+  gap:48px;margin-bottom:48px;
+}
+.foot-brand .fl{
+  font-family:'Sora',sans-serif;font-weight:900;font-size:1.25rem;color:var(--white);
+  letter-spacing:-.03em;margin-bottom:12px;
+}
+.foot-brand .fl span{color:var(--sky)}
+.foot-brand p{font-size:.83rem;color:rgba(255,255,255,.38);line-height:1.65;max-width:200px}
+.foot-col h5{
+  font-family:'Sora',sans-serif;font-size:.78rem;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.35);
+  margin-bottom:16px;
+}
+.foot-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.foot-col a{font-size:.82rem;color:rgba(255,255,255,.4);transition:color var(--trs)}
+.foot-col a:hover{color:var(--sky)}
+.footer-bottom{
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;
+  border-top:1px solid rgba(255,255,255,.05);padding-top:24px;
+}
+.copy{font-size:.76rem;color:rgba(255,255,255,.25)}
+.foot-legal{display:flex;gap:20px}
+.foot-legal a{font-size:.76rem;color:rgba(255,255,255,.25);transition:color var(--trs)}
+.foot-legal a:hover{color:rgba(255,255,255,.5)}
+
+/* ════════════════════════════════════════════════
+   RESPONSIVE
+════════════════════════════════════════════════ */
+@media(max-width:960px){
+  .footer-top{grid-template-columns:1fr 1fr;gap:32px}
+  .nav-links{display:none}
+  .mobile-menu-btn{display:flex}
+}
+@media(max-width:640px){
+  .container{padding:0 20px}
+  .page-header{padding:120px 0 60px}
+  .page-header h1{font-size:1.8rem}
+  .section-inner{padding:0}
+  .content-section h2{font-size:1.5rem}
+  .content-section h3{font-size:1.15rem}
+  .footer-top{grid-template-columns:1fr;text-align:center}
+  .foot-col ul{align-items:center}
+  .footer-bottom{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- Scroll progress -->
+<div id="scroll-progress"></div>
+
+<!-- ══════════════ NAV ══════════════ -->
+<nav>
+  <div class="container">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">LorryBroker<span class="nav-logo-dot"></span></a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="terms.html" class="active">Terms</a></li>
+        <li><a href="privacy.html">Privacy</a></li>
+      </ul>
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <ul class="mobile-menu-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="terms.html" class="active">Terms</a></li>
+    <li><a href="privacy.html">Privacy</a></li>
+  </ul>
+  <div class="mobile-menu-cta">
+    <a href="contact.html">Get Started</a>
+  </div>
+</div>
+
+<!-- ══════════════ PAGE HEADER ══════════════ -->
+<section class="page-header">
+  <div class="container">
+    <div class="page-header-content reveal">
+      <span class="badge badge-blue page-header-badge">Legal Agreement</span>
+      <h1>Terms and <span class="hl" style="color:var(--sky)">Conditions</span></h1>
+      <p>Please read these terms carefully before using LorryBroker's platform and services.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ CONTENT SECTION ══════════════ -->
+<section class="content-section">
+  <div class="container">
+    <div class="section-inner reveal d1">
+      
+      <div class="last-updated">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Last Updated: June 25, 2026
+      </div>
+
+      <h2>1. <span class="hl">Acceptance of Terms</span></h2>
+      <p>By accessing or using the LorryBroker platform ("Service"), you agree to be bound by these Terms and Conditions ("Terms"). If you do not agree to these Terms, you may not use our Service.</p>
+      <p>These Terms apply to all users of the Service, including carriers, owner-operators, fleet managers, and any other individuals or entities accessing our platform.</p>
+
+      <h2>2. <span class="hl">Service Description</span></h2>
+      <p>LorryBroker provides a digital platform that connects carriers with freight opportunities. Our services include:</p>
+      <ul>
+        <li>Load matching and freight marketplace access</li>
+        <li>Real-time tracking and dispatch management tools</li>
+        <li>Payment processing services (QuickPay and standard payment terms)</li>
+        <li>Mobile applications for iOS and Android</li>
+        <li>Carrier verification and onboarding services</li>
+        <li>Analytics, reporting, and business intelligence tools</li>
+      </ul>
+      <p>We reserve the right to modify, suspend, or discontinue any aspect of the Service at any time with or without notice.</p>
+
+      <h2>3. <span class="hl">Account Registration</span></h2>
+      <p>To use LorryBroker, you must create an account and provide accurate, complete information. You are responsible for:</p>
+      <ul>
+        <li>Maintaining the confidentiality of your account credentials</li>
+        <li>All activities that occur under your account</li>
+        <li>Notifying us immediately of any unauthorized access or security breach</li>
+        <li>Ensuring all documentation (insurance certificates, carrier authority, etc.) remains current</li>
+      </ul>
+      <p>You must be at least 18 years old and have the legal authority to enter into contracts in your jurisdiction to create an account.</p>
+
+      <h2>4. <span class="hl">Carrier Requirements</span></h2>
+      <p>All carriers using LorryBroker must maintain:</p>
+      <ul>
+        <li><strong>Valid Operating Authority:</strong> Current Motor Carrier (MC) or Department of Transportation (DOT) number where applicable</li>
+        <li><strong>Insurance Coverage:</strong> Minimum liability insurance as required by law and our platform standards</li>
+        <li><strong>Good Standing:</strong> Compliance with all applicable transportation regulations and laws</li>
+        <li><strong>Vehicle Standards:</strong> Properly maintained and inspected equipment meeting safety standards</li>
+      </ul>
+      <p>We reserve the right to verify credentials and deny or terminate service to carriers who do not meet these requirements.</p>
+
+      <h2>5. <span class="hl">Payment Terms</span></h2>
+      <h3>Standard Payment</h3>
+      <p>Standard payment terms are Net 30 days from delivery confirmation and receipt of proper documentation (signed Bill of Lading, proof of delivery, invoices).</p>
+      
+      <h3>QuickPay Service</h3>
+      <p>Our QuickPay service offers payment within 24 hours for a service fee of 1.5% of the load value. By opting into QuickPay, you agree to:</p>
+      <ul>
+        <li>Pay the applicable service fee, which is deducted from your payment</li>
+        <li>Provide all required documentation within specified timeframes</li>
+        <li>Accept electronic payment via ACH or other approved methods</li>
+      </ul>
+
+      <h3>Fees and Charges</h3>
+      <p>LorryBroker may charge platform fees, transaction fees, or other service charges. All fees will be clearly disclosed before you accept a load or service.</p>
+
+      <div class="info-box">
+        <p><strong>Important:</strong> Payment processing times may vary based on banking institutions and documentation completeness. We are not responsible for delays caused by incomplete documentation or third-party payment processors.</p>
+      </div>
+
+      <h2>6. <span class="hl">Load Acceptance and Cancellation</span></h2>
+      <p>When you accept a load through LorryBroker, you enter into a binding agreement to transport that freight according to the specified terms.</p>
+      
+      <h3>Carrier Obligations</h3>
+      <ul>
+        <li>Pick up and deliver freight on time and in good condition</li>
+        <li>Maintain communication throughout the shipment lifecycle</li>
+        <li>Provide accurate tracking information and updates</li>
+        <li>Report any delays, incidents, or issues immediately</li>
+      </ul>
+
+      <h3>Cancellation Policy</h3>
+      <p>Cancellations after load acceptance may result in:</p>
+      <ul>
+        <li>Service fees or penalties as specified in the load agreement</li>
+        <li>Negative impact on your carrier rating and platform standing</li>
+        <li>Suspension or termination of account access in cases of repeated violations</li>
+      </ul>
+
+      <h2>7. <span class="hl">Liability and Insurance</span></h2>
+      <p>Carriers are fully responsible for freight in their possession and must maintain adequate insurance coverage. LorryBroker does not assume liability for:</p>
+      <ul>
+        <li>Loss, damage, or delay of freight</li>
+        <li>Accidents, injuries, or property damage during transportation</li>
+        <li>Claims arising from carrier negligence or failure to maintain proper insurance</li>
+      </ul>
+      <p>In the event of loss or damage, carriers must follow proper claims procedures and provide all required documentation.</p>
+
+      <h2>8. <span class="hl">User Conduct</span></h2>
+      <p>You agree not to:</p>
+      <ul>
+        <li>Use the Service for any illegal purpose or in violation of any laws</li>
+        <li>Provide false, misleading, or fraudulent information</li>
+        <li>Interfere with or disrupt the Service or servers/networks connected to the Service</li>
+        <li>Attempt to gain unauthorized access to any portion of the Service</li>
+        <li>Harass, threaten, or intimidate other users or LorryBroker staff</li>
+        <li>Use automated systems (bots, scripts) to access the Service without authorization</li>
+      </ul>
+
+      <h2>9. <span class="hl">Intellectual Property</span></h2>
+      <p>All content, features, and functionality of the LorryBroker Service, including but not limited to text, graphics, logos, icons, images, audio clips, software, and data compilations, are the exclusive property of LorryBroker or its licensors and are protected by copyright, trademark, and other intellectual property laws.</p>
+      <p>You may not reproduce, distribute, modify, create derivative works of, publicly display, or exploit any content from our Service without our express written permission.</p>
+
+      <h2>10. <span class="hl">Disclaimer of Warranties</span></h2>
+      <p>THE SERVICE IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT.</p>
+      <p>We do not guarantee that the Service will be uninterrupted, secure, or error-free, or that defects will be corrected.</p>
+
+      <h2>11. <span class="hl">Limitation of Liability</span></h2>
+      <p>TO THE MAXIMUM EXTENT PERMITTED BY LAW, LORRYBROKER SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS OR REVENUES, WHETHER INCURRED DIRECTLY OR INDIRECTLY, OR ANY LOSS OF DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES.</p>
+      <p>Our total liability to you for any claims arising from or related to these Terms or the Service shall not exceed the amount you paid to LorryBroker in the twelve (12) months preceding the claim.</p>
+
+      <h2>12. <span class="hl">Indemnification</span></h2>
+      <p>You agree to indemnify, defend, and hold harmless LorryBroker, its affiliates, officers, directors, employees, and agents from any claims, liabilities, damages, losses, costs, or expenses (including reasonable attorneys' fees) arising from:</p>
+      <ul>
+        <li>Your use of the Service</li>
+        <li>Your violation of these Terms</li>
+        <li>Your violation of any rights of another party</li>
+        <li>Any freight claims, accidents, or incidents occurring during transportation</li>
+      </ul>
+
+      <h2>13. <span class="hl">Termination</span></h2>
+      <p>We may terminate or suspend your account and access to the Service immediately, without prior notice, for any reason, including but not limited to:</p>
+      <ul>
+        <li>Violation of these Terms</li>
+        <li>Fraudulent or illegal activity</li>
+        <li>Failure to maintain required credentials or insurance</li>
+        <li>Repeated poor performance or customer complaints</li>
+      </ul>
+      <p>Upon termination, your right to use the Service will immediately cease. All provisions of these Terms that by their nature should survive termination shall survive.</p>
+
+      <h2>14. <span class="hl">Dispute Resolution</span></h2>
+      <p>Any disputes arising from these Terms or the Service shall be resolved through binding arbitration in accordance with the rules of the Indian Arbitration and Conciliation Act, 1996. The arbitration shall take place in Mumbai, Maharashtra, India.</p>
+      <p>You agree to waive any right to a jury trial or to participate in a class action lawsuit.</p>
+
+      <h2>15. <span class="hl">Governing Law</span></h2>
+      <p>These Terms shall be governed by and construed in accordance with the laws of India, without regard to its conflict of law provisions.</p>
+
+      <h2>16. <span class="hl">Changes to Terms</span></h2>
+      <p>We reserve the right to modify these Terms at any time. We will notify you of any changes by posting the new Terms on this page and updating the "Last Updated" date.</p>
+      <p>Your continued use of the Service after changes are posted constitutes your acceptance of the modified Terms.</p>
+
+      <h2>17. <span class="hl">Contact Information</span></h2>
+      <p>If you have any questions about these Terms, please contact us:</p>
+      <ul>
+        <li><strong>Email:</strong> legal@lorrybroker.com</li>
+        <li><strong>Phone:</strong> +91 800-123-4567</li>
+        <li><strong>Address:</strong> 123 Logistics Avenue, Mumbai, Maharashtra 400001, India</li>
+      </ul>
+
+      <div class="info-box" style="margin-top:48px">
+        <p><strong>By using LorryBroker, you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions.</strong></p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="foot-brand">
+        <div class="fl">LorryBroker<span>.</span></div>
+        <p>The industry's most powerful load-matching engine for professional carriers.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Network</h5>
+        <ul>
+          <li><a href="index.html">Load Board</a></li>
+          <li><a href="index.html#loads">Services</a></li>
+          <li><a href="index.html#pocket">Mobile App</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="terms.html">Terms of Service</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="copy">© 2026 Lorry Broker Inc. All rights reserved.</p>
+      <div class="foot-legal">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ─── Mobile Menu Toggle ─── */
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+if(mobileMenuBtn && mobileMenu){
+  mobileMenuBtn.addEventListener('click', () => {
+    mobileMenuBtn.classList.toggle('active');
+    mobileMenu.classList.toggle('active');
+    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+  });
+  mobileMenu.addEventListener('click', (e) => {
+    if(e.target === mobileMenu){
+      mobileMenuBtn.classList.remove('active');
+      mobileMenu.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  });
+}
+
+/* ─── Scroll progress ─── */
+const prog = document.getElementById('scroll-progress');
+window.addEventListener('scroll', () => {
+  const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+  prog.style.width = pct + '%';
+}, {passive:true});
+
+/* ─── Reveal on scroll ─── */
+const allReveals = document.querySelectorAll('.reveal');
+const ro = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){ e.target.classList.add('visible'); ro.unobserve(e.target); }
+  });
+}, {threshold:0.1});
+allReveals.forEach(el => ro.observe(el));
+</script>
+</body>
+</html>
