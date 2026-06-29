@@ -594,16 +594,20 @@ nav.scrolled{
 }
 
 .trip-tips{
-  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;
+  display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:7px;
   margin-top:auto;padding-top:8px;
   border-top:1px solid rgba(255,255,255,.08);
 }
 .trip-tip{
-  padding:6px 8px;border-radius:999px;
+  padding:6px 10px;border-radius:999px;
   background:rgba(10,22,40,.52);border:1px solid rgba(255,255,255,.2);
   color:rgba(255,255,255,.9);font-size:.6rem;font-weight:700;letter-spacing:.03em;
-  text-transform:uppercase;text-align:center;white-space:nowrap;
+  text-transform:uppercase;text-align:center;line-height:1.2;
+  display:flex;align-items:center;justify-content:center;
+  min-height:30px;
+  grid-column:span 2;
 }
+.trip-tip:nth-child(-n+2){grid-column:span 3}
 
 .pac-container{
   z-index:3000 !important;
@@ -1216,6 +1220,8 @@ footer{
   .trip-top-metrics{grid-template-columns:1fr}
   .trip-search-row{grid-template-columns:1fr;gap:12px;align-items:stretch}
   .trip-swap{width:100%;height:40px}
+  .trip-tips{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .trip-tip:nth-child(-n+2){grid-column:span 1}
   .asset-simple-card{min-height:340px;padding:14px 14px 16px}
   .asset-simple-media{height:120px;margin:-14px -14px 12px}
   .asset-simple-title{font-size:.98rem}
@@ -1428,6 +1434,8 @@ footer{
               <span class="trip-tip">Google Location Search</span>
               <span class="trip-tip">Live Lane Matching</span>
               <span class="trip-tip">Instant Availability</span>
+              <span class="trip-tip">Fast Pay Loads</span>
+              <span class="trip-tip">Reload Alerts</span>
             </div>
           </form>
         </div>
