@@ -340,13 +340,15 @@ nav.scrolled{
 
 .dashboard-card{
   background:
-    linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.03)),
-    linear-gradient(135deg,rgba(26,79,206,.18),rgba(56,189,248,.04) 45%,transparent 100%);
+    linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.08)),
+    linear-gradient(135deg,rgba(26,79,206,.28),rgba(56,189,248,.12) 45%,rgba(6,14,30,.2) 100%);
   border:1px solid rgba(255,255,255,.12);
-  border-radius:28px;padding:28px;
+  border-radius:28px;padding:32px;
+  min-height:560px;
   backdrop-filter:blur(24px);
   box-shadow:0 36px 90px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.12);
   position:relative;overflow:hidden;
+  display:flex;flex-direction:column;gap:16px;
   transform:perspective(1200px) rotateY(-6deg) rotateX(2deg);
   transition:transform var(--trs),box-shadow var(--trs);
 }
@@ -361,9 +363,14 @@ nav.scrolled{
     linear-gradient(135deg,rgba(37,99,235,.12),transparent 55%);
   pointer-events:none;
 }
+.dashboard-card::after{
+  content:'';position:absolute;inset:auto 24px 20px 24px;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(56,189,248,.55),transparent);
+  pointer-events:none;opacity:.7;
+}
 .dc-header{
   display:flex;align-items:flex-start;justify-content:space-between;
-  gap:16px;margin-bottom:20px;
+  gap:16px;margin-bottom:4px;
 }
 .dc-title{font-family:'Sora',sans-serif;font-weight:800;font-size:1.05rem;color:var(--white);display:block}
 .dc-sub{
@@ -497,6 +504,113 @@ nav.scrolled{
 }
 .panel-row-metric{
   font-family:'Sora',sans-serif;font-size:.82rem;font-weight:700;color:var(--white);
+}
+
+.trip-search-form{
+  display:flex;flex-direction:column;gap:14px;flex:1;
+}
+.trip-search-row{
+  display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:12px;align-items:end;
+}
+.trip-top-metrics{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;
+}
+.trip-metric{
+  padding:12px 11px;border-radius:14px;
+  background:rgba(10,22,40,.42);border:1px solid rgba(255,255,255,.16);
+}
+.trip-metric strong{
+  display:block;font-family:'Sora',sans-serif;font-size:1rem;font-weight:800;color:var(--white);
+}
+.trip-metric span{
+  display:block;margin-top:5px;font-size:.67rem;letter-spacing:.04em;text-transform:uppercase;
+  color:rgba(255,255,255,.46);
+}
+.trip-field{
+  display:grid;gap:7px;
+}
+.trip-field{min-width:0}
+.trip-field label{
+  font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:rgba(255,255,255,.62);
+}
+.trip-input,.trip-select{
+  width:100%;height:46px;padding:0 14px;
+  border-radius:12px;border:1px solid rgba(255,255,255,.2);
+  background:rgba(10,22,40,.52);color:var(--white);
+  font-size:.87rem;font-weight:500;outline:none;
+  transition:border-color var(--trs),box-shadow var(--trs),background var(--trs);
+}
+.trip-input::placeholder{color:rgba(255,255,255,.42)}
+.trip-input:focus,.trip-select:focus{
+  border-color:rgba(56,189,248,.56);
+  box-shadow:0 0 0 3px rgba(56,189,248,.18);
+  background:rgba(10,22,40,.68);
+}
+.trip-select option{
+  color:var(--text);
+}
+.trip-swap{
+  width:46px;height:46px;border-radius:12px;align-self:end;
+  border:1px solid rgba(255,255,255,.22);
+  background:rgba(10,22,40,.52);color:var(--sky);
+  display:flex;align-items:center;justify-content:center;
+  transition:var(--trs);
+}
+.trip-swap:hover{transform:translateY(-2px) rotate(180deg);background:rgba(56,189,248,.12)}
+.trip-submit{
+  margin-top:2px;height:48px;border-radius:12px;
+  background:linear-gradient(135deg,var(--blue2),var(--blue));
+  color:var(--white);font-family:'Sora',sans-serif;font-size:.86rem;font-weight:700;
+  letter-spacing:.01em;
+  box-shadow:0 12px 30px rgba(37,99,235,.35);
+  transition:var(--trs);
+}
+.trip-submit:hover{transform:translateY(-2px);box-shadow:0 18px 36px rgba(37,99,235,.45)}
+
+.trip-lane-preview{
+  padding:14px;border-radius:16px;
+  background:rgba(7,15,34,.7);border:1px solid rgba(255,255,255,.16);
+  display:grid;gap:10px;
+}
+.trip-lane-top{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+}
+.trip-lane-label{
+  font-size:.66rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(56,189,248,.9);
+}
+.trip-lane-route{
+  margin-top:6px;font-family:'Sora',sans-serif;font-size:1rem;font-weight:800;letter-spacing:-.02em;color:var(--white);
+}
+.trip-lane-rate{
+  font-family:'Sora',sans-serif;font-size:1.02rem;font-weight:800;color:var(--white);
+}
+.trip-lane-flow{
+  position:relative;height:4px;border-radius:999px;background:rgba(255,255,255,.2);
+}
+.trip-lane-flow::before{
+  content:'';position:absolute;left:0;top:0;height:100%;width:72%;
+  border-radius:999px;background:linear-gradient(90deg,var(--sky),var(--blue2));
+}
+
+.trip-tips{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;
+  margin-top:auto;padding-top:8px;
+  border-top:1px solid rgba(255,255,255,.08);
+}
+.trip-tip{
+  padding:6px 8px;border-radius:999px;
+  background:rgba(10,22,40,.52);border:1px solid rgba(255,255,255,.2);
+  color:rgba(255,255,255,.9);font-size:.6rem;font-weight:700;letter-spacing:.03em;
+  text-transform:uppercase;text-align:center;white-space:nowrap;
+}
+
+.pac-container{
+  z-index:3000 !important;
+  border-radius:12px;
+  border:1px solid #dbe3f2;
+  box-shadow:0 14px 42px rgba(10,22,40,.18);
+  font-family:'DM Sans',sans-serif;
 }
 
 /* Floating accent cards */
@@ -1085,7 +1199,7 @@ footer{
   .kpi-num{font-size:1.25rem}
   .kpi-label{font-size:.68rem}
   .hero-note{font-size:.74rem;margin-top:12px}
-  .dashboard-card{padding:16px;transform:none !important}
+  .dashboard-card{padding:18px;min-height:auto;transform:none !important}
   .dc-title{font-size:.95rem}
   .dc-sub{font-size:.74rem;margin-top:5px}
   .route-focus{padding:14px;margin-bottom:14px}
@@ -1099,6 +1213,9 @@ footer{
   .rf-top,.route-flow,.panel-row{grid-template-columns:1fr;display:grid}
   .rf-price{text-align:left}
   .route-node{min-width:0}
+  .trip-top-metrics{grid-template-columns:1fr}
+  .trip-search-row{grid-template-columns:1fr;gap:12px;align-items:stretch}
+  .trip-swap{width:100%;height:40px}
   .asset-simple-card{min-height:340px;padding:14px 14px 16px}
   .asset-simple-media{height:120px;margin:-14px -14px 12px}
   .asset-simple-title{font-size:.98rem}
@@ -1240,94 +1357,79 @@ footer{
         <p class="hero-note">Built for owner-operators, small fleets, and high-performance carriers that want faster access to profitable freight.</p>
       </div>
 
-      <!-- RIGHT: command center card -->
+      <!-- RIGHT: trip search card -->
       <div class="hero-visual">
         <div class="dashboard-card" id="dashCard">
           <div class="dc-header">
             <div>
-              <span class="dc-title">Carrier Command Center</span>
-              <p class="dc-sub">A premium operating view designed to surface the highest-margin lanes, the next best moves, and the metrics that matter most.</p>
+              <span class="dc-title">Search Trips by Lane</span>
+              <p class="dc-sub">Find the right load lane quickly with Google location autocomplete and truck-type filtering.</p>
             </div>
             <span class="live-chip"><span class="live-dot"></span>Live</span>
           </div>
-          <div class="panel-actions">
-            <div class="action-pill"><span class="mini-dot"></span>Priority lanes</div>
-            <div class="action-pill"><span class="mini-dot"></span>Fast pay eligible</div>
-            <div class="action-pill"><span class="mini-dot"></span>Smart reload alerts</div>
-          </div>
 
-          <div class="route-focus">
-            <div class="rf-top">
-              <div>
-                <div class="rf-kicker">Best Lane Today</div>
-                <div class="rf-title">Mumbai to Delhi</div>
-                <div class="rf-meta">Optimized for long-haul carriers with same-day pickup, stronger reload demand, and lower empty-kilometer exposure.</div>
-              </div>
-              <div class="rf-price">$4.85<span>per mile</span></div>
-            </div>
-            <div class="route-flow">
-              <div class="route-node">
-                <strong>BOM</strong>
-                <span>Pickup 08:30</span>
-              </div>
-              <div class="route-track"></div>
-              <div class="route-node">
-                <strong>DEL</strong>
-                <span>Drop 21:10</span>
-              </div>
-            </div>
-            <div class="route-tags">
-              <span class="route-tag">Dry Van</span>
-              <span class="route-tag">Reload Ready</span>
-              <span class="route-tag">QuickPay</span>
-              <span class="route-tag">Low Deadhead</span>
-            </div>
-          </div>
-
-          <div class="panel-grid">
-            <div class="panel-stat">
+          <div class="trip-top-metrics" aria-hidden="true">
+            <div class="trip-metric">
               <strong>12,482</strong>
-              <span>Live loads tracked</span>
+              <span>Open Trips</span>
             </div>
-            <div class="panel-stat">
-              <strong>28</strong>
-              <span>States covered</span>
-            </div>
-            <div class="panel-stat">
-              <strong>2.3h</strong>
-              <span>Avg match time</span>
-            </div>
-            <div class="panel-stat">
+            <div class="trip-metric">
               <strong>98.9%</strong>
-              <span>Success rate</span>
+              <span>Fill Rate</span>
+            </div>
+            <div class="trip-metric">
+              <strong>2.3h</strong>
+              <span>Avg Match</span>
             </div>
           </div>
 
-          <div class="panel-list">
-            <div class="panel-row">
-              <div class="panel-row-left">
-                <div class="panel-row-pill">01</div>
-                <div>Pune reload alert<span>High-priority lane recommendation</span></div>
+          <div class="trip-lane-preview" aria-hidden="true">
+            <div class="trip-lane-top">
+              <div>
+                <div class="trip-lane-label">Top Active Lane</div>
+                <div class="trip-lane-route">Mumbai to Delhi</div>
               </div>
-              <div class="panel-row-metric">$5.12/mi</div>
+              <div class="trip-lane-rate">$4.85/mi</div>
             </div>
-            <div class="panel-row">
-              <div class="panel-row-left">
-                <div class="panel-row-pill">02</div>
-                <div>QuickPay approved<span>Documents verified and ready to dispatch</span></div>
-              </div>
-              <div class="panel-row-metric">24 hrs</div>
-            </div>
+            <div class="trip-lane-flow"></div>
           </div>
 
-          <div class="float-card fc1">
-            <div class="fc-n">+18%</div>
-            <div class="fc-l">Weekly Revenue Lift</div>
-          </div>
-          <div class="float-card fc2 fc-green">
-            <div class="fc-n">4.7 hrs</div>
-            <div class="fc-l">Average Empty Miles Cut</div>
-          </div>
+          <form class="trip-search-form" id="heroTripSearch" action="#" method="get">
+            <div class="trip-search-row">
+              <div class="trip-field">
+                <label for="tripFrom">From</label>
+                <input class="trip-input" id="tripFrom" name="from" type="text" placeholder="Pickup city or address" autocomplete="off" required/>
+              </div>
+              <button class="trip-swap" id="tripSwap" type="button" aria-label="Swap from and to locations">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h13"/><path d="m13 3 4 4-4 4"/><path d="M20 17H7"/><path d="m11 21-4-4 4-4"/></svg>
+              </button>
+              <div class="trip-field">
+                <label for="tripTo">To</label>
+                <input class="trip-input" id="tripTo" name="to" type="text" placeholder="Delivery city or address" autocomplete="off" required/>
+              </div>
+            </div>
+
+            <div class="trip-field">
+              <label for="truckType">Truck Type</label>
+              <select class="trip-select" id="truckType" name="truckType" required>
+                <option value="" selected disabled>Select truck type</option>
+                <option value="open-truck">Open Truck</option>
+                <option value="container">Container Truck</option>
+                <option value="flatbed">Flatbed</option>
+                <option value="reefer">Reefer</option>
+                <option value="tanker">Tanker</option>
+                <option value="trailer">Trailer</option>
+              </select>
+            </div>
+
+            <button class="trip-submit" type="submit">Search Trip</button>
+
+            <div class="trip-tips" aria-hidden="true">
+              <span class="trip-tip">Google Location Search</span>
+              <span class="trip-tip">Live Lane Matching</span>
+              <span class="trip-tip">Instant Availability</span>
+            </div>
+          </form>
         </div>
       </div>
 
@@ -1841,6 +1943,49 @@ document.querySelectorAll('.ben-card,.testi-card,.asset-simple-card,.dc-stat').f
     parallax();
   });
 });
+
+/* ─── Hero trip search interactions ─── */
+const tripFromInput = document.getElementById('tripFrom');
+const tripToInput = document.getElementById('tripTo');
+const tripSwapBtn = document.getElementById('tripSwap');
+
+if(tripSwapBtn && tripFromInput && tripToInput){
+  tripSwapBtn.addEventListener('click', () => {
+    const fromValue = tripFromInput.value;
+    tripFromInput.value = tripToInput.value;
+    tripToInput.value = fromValue;
+  });
+}
+
+window.initHeroTripAutocomplete = function initHeroTripAutocomplete(){
+  if(!tripFromInput || !tripToInput) return;
+  if(!window.google || !google.maps || !google.maps.places || !google.maps.places.Autocomplete){
+    return;
+  }
+
+  const options = {
+    fields: ['formatted_address', 'geometry', 'name'],
+    types: ['geocode']
+  };
+
+  const fromAutocomplete = new google.maps.places.Autocomplete(tripFromInput, options);
+  const toAutocomplete = new google.maps.places.Autocomplete(tripToInput, options);
+
+  fromAutocomplete.addListener('place_changed', () => {
+    const place = fromAutocomplete.getPlace();
+    if(place && place.formatted_address){
+      tripFromInput.value = place.formatted_address;
+    }
+  });
+
+  toAutocomplete.addListener('place_changed', () => {
+    const place = toAutocomplete.getPlace();
+    if(place && place.formatted_address){
+      tripToInput.value = place.formatted_address;
+    }
+  });
+};
 </script>
+<script async src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&libraries=places&callback=initHeroTripAutocomplete"></script>
 </body>
 </html>
